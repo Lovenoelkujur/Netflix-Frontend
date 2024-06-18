@@ -6,13 +6,17 @@ import API_END_POINT from '../utils/Constant';
 import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { setToggle } from '../redux/movieSlice';
 
 const Header = () => {
 
   const user = useSelector((store) => store.app.user);
+  const toggle = useSelector((store) => store.movie.toggle);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Logout Handler
   const logoutHandler = async() => {
     try {
       const res = await axios.get(`${API_END_POINT}/logout`);
@@ -27,6 +31,11 @@ const Header = () => {
     }
   }
 
+  // Search Handler (Toggle)
+  const toggleHandler = () => {
+    dispatch(setToggle());
+  }
+
   return (
     <div className='absolute z-10 flex w-[100%] items-center justify-between px-6 bg-gradient-to-t from-black'>
         <img className='w-56' src='../images/Logonetflix.png' alt='Netflix-Logo'/>
@@ -37,7 +46,7 @@ const Header = () => {
                 <IoMdArrowDropdown size="24" color='white'/>
                 <div className='ml-4'>
                     <button onClick={logoutHandler} className='bg-red-800 text-white px-4 py-2'>Logout</button>
-                    <button className='bg-red-800 text-white px-4 py-2 ml-2'>Search Movie</button>
+                    <button onClick={toggleHandler} className='bg-red-800 text-white px-4 py-2 ml-2'>{toggle ? "Home" : "Serach Movie"}</button>
                 </div>
             </div>
           )
