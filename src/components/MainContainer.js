@@ -10,7 +10,7 @@ const MainContainer = () => {
 
   if(!movie) return;    // Early return in react
 
-  console.log(movie);
+  // console.log(movie);
   const {overview, id, title} = movie[4]
 
   return (
