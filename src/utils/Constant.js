@@ -1,4 +1,4 @@
-const API_END_POINT = "http://localhost:9000/api/v1/user";
+const API_END_POINT = "https://netflix-backend-z6wt.onrender.com/api/v1/user";
 
 export const options = {
     method: 'GET',
